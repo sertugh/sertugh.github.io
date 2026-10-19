@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="ug" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>سەرتۇغ ھەربىي بىلىملەر مۇنبىرى</title>
+    <style>
+        /* ئۇيغۇرچە خەت نۇسخىسى ۋە ئاساسىي تەڭشەكلەر */
+        @font-face {
+            font-family: 'UKIJ Tuz Tom';
+            src: local('UKIJ Tuz Tom'), local('ALKATIP Tor'), local('Microsoft Uighur');
+        }
+
+        :root {
+            --bg-dark: #121614;
+            --bg-card: #1c221f;
+            --bg-card-hover: #252d29;
+            --accent-green: #4a6b53;
+            --accent-gold: #c5a059;
+            --text-main: #e8ece9;
+            --text-muted: #9aa59e;
+            --border-color: #2e3833;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'UKIJ Tuz Tom', 'ALKATIP Tor', 'Segoe UI', Tahoma, sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.8;
+            direction: rtl;
+        }
+
+        /* ئۈستى تىزىملىك (Navbar) */
+        header {
+            background-color: rgba(28, 34, 31, 0.95);
+            border-bottom: 2px solid var(--accent-green);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-badge {
+            background-color: var(--accent-green);
+            color: #fff;
+            padding: 8px 14px;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 1.3rem;
+            border: 1px solid var(--accent-gold);
+        }
+
+        .site-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--text-main);
+        }
+
+        .site-subtitle {
+            font-size: 0.85rem;
+            color: var(--accent-gold);
+            display: block;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 1.05rem;
+            padding: 6px 12px;
+            border-radius: 4px;
+            transition: 0.3s;
+        }
+
+        nav a:hover, nav a.active {
+            background-color: var(--accent-green);
+            color: #fff;
+        }
+
+        /* باش بەت چوڭ ئېلان رايونى (Hero Section) */
+        .hero {
+            background: linear-gradient(rgba(18, 22, 20, 0.85), rgba(18, 22, 20, 0.95)), 
+                        url('https://images.unsplash.com/photo-1508614589041-895b88991e3e?auto=format&fit=crop&w=1400&q=80') center/cover;
+            padding: 70px 5%;
+            text-align: center;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .hero h1 {
+            font-size: 2.4rem;
+            color: var(--accent-gold);
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 750px;
+            margin: 0 auto 25px auto;
+        }
+
+        .search-box {
+            max-width: 500px;
+            margin: 0 auto;
+            display: flex;
+            gap: 10px;
+        }
+
+        .search-box input {
+            flex: 1;
+            padding: 12px 15px;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+            background-color: var(--bg-card);
+            color: var(--text-main);
+            font-family: inherit;
+            font-size: 1rem;
+        }
+
+        .search-box button {
+            padding: 12px 25px;
+            background-color: var(--accent-gold);
+            color: #121614;
+            border: none;
+            border-radius: 6px;
+            font-family: inherit;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .search-box button:hover {
+            background-color: #d8b46c;
+        }
+
+        /* ئاساسىي مەزمۇن رايونى */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            border-right: 4px solid var(--accent-gold);
+            padding-right: 12px;
+        }
+
+        .section-header h2 {
+            font-size: 1.6rem;
+            color: var(--text-main);
+        }
+
+        .view-all {
+            color: var(--accent-gold);
+            text-decoration: none;
+            font-size: 0.95rem;
+        }
+
+        /* 1. ماقالىلەر تىزىملىكى (Articles Grid) */
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            margin-bottom: 60px;
+        }
+
+        .article-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: 0.3s;
+        }
+
+        .article-card:hover {
+            transform: translateY(-5px);
+            background-color: var(--bg-card-hover);
+            border-color: var(--accent-green);
+        }
+
+        .article-img {
+            height: 200px;
+            background-color: #2a332e;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .category-tag {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background-color: var(--accent-green);
+            color: #fff;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+        }
+
+        .article-content {
+            padding: 20px;
+        }
+
+        .article-date {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
+        .article-title {
+            font-size: 1.25rem;
+            margin-bottom: 12px;
+            color: var(--text-main);
+        }
+
+        .article-excerpt {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 15px;
+        }
+
+        .read-more {
+            display: inline-block;
+            color: var(--accent-gold);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.95rem;
+        }
+
+        /* 2. ئىنفوگرافىك رەسىملەر رايونى (Infographics) */
+        .infographic-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 60px;
+        }
+
+        .info-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .info-placeholder {
+            height: 280px;
+            background: linear-gradient(135deg, #232b27, #181d1a);
+            border: 1px dashed var(--accent-green);
+            border-radius: 6px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 12px;
+            color: var(--accent-gold);
+            padding: 20px;
+        }
+
+        /* 3. PDF كىتابچىلار ۋە قوللانمىلار رايونى */
+        .pdf-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+
+        .pdf-item {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 18px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .pdf-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .pdf-icon {
+            background-color: #8b2626;
+            color: #fff;
+            padding: 10px 14px;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .pdf-details h3 {
+            font-size: 1.15rem;
+            margin-bottom: 4px;
+        }
+
+        .pdf-details span {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .download-btn {
+            background-color: var(--accent-green);
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            transition: 0.3s;
+            border: 1px solid transparent;
+        }
+
+        .download-btn:hover {
+            background-color: transparent;
+            border-color: var(--accent-gold);
+            color: var(--accent-gold);
+        }
+
+        /* ئاستى قىسمى (Footer) */
+        footer {
+            background-color: #0d100e;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            padding: 30px 20px;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 15px;
+            }
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            .pdf-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .download-btn {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- باش تىزىملىك -->
+    <header>
+        <div class="logo-area">
+            <div class="logo-badge">سەرتۇغ</div>
+            <div>
+                <div class="site-title">سەرتۇغ ھەربىي بىلىملەر مۇنبىرى</div>
+                <span class="site-subtitle">ئىلمىي تاكتىكا، قورال مېخانىكىسى ۋە زامانىۋى جەڭ نەزەرىيەسى</span>
+            </div>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#" class="active">باش بەت</a></li>
+                <li><a href="#articles">ماقالىلەر</a></li>
+                <li><a href="#infographics">ئىنفوگرافىك</a></li>
+                <li><a href="#library">PDF كۇتۇپخانىسى</a></li>
+                <li><a href="#">بىز ھەققىدە</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- چوڭ تونۇشتۇرۇش رايونى -->
+    <section class="hero">
+        <h1>ئىلمىي ئاساستىكى ھەربىي ۋە تاكتىكىلىق بىلىملەر مەركىزى</h1>
+        <p>بۇ مۇنبەردە يېنىك قوراللارنى ئىشلىتىش تېخنىكىسى، كىچىك قىسىم پىيادە ئەسكەرلەر تاكتىكىسى، قوماندانلىق تەرتىپلىرى ۋە زامانىۋى ئۇرۇش ئانالىزلىرى ئۇيغۇر تىلىدا سىستېمىلىق يوللىنىدۇ.</p>
+        <div class="search-box">
+            <input type="text" placeholder="ماقالە، تاكتىكا ياكى قوللانما ئىزدەش...">
+            <button>ئىزدەش</button>
+        </div>
+    </section>
+
+    <div class="container">
+
+        <!-- 1-بۆلەك: يېزىقچە ماقالىلەر -->
+        <div class="section-header" id="articles">
+            <h2>ئەڭ يېڭى ھەربىي ماقالىلەر</h2>
+            <a href="#" class="view-all">بارلىق ماقالىلەرنى كۆرۈش ←</a>
+        </div>
+
+        <div class="articles-grid">
+            <!-- ماقالە 1 -->
+            <div class="article-card">
+                <div class="article-img" style="background-image: url('https://images.unsplash.com/photo-1595590424283-b8f17842773f?auto=format&fit=crop&w=600&q=80');">
+                    <span class="category-tag">قورال تېخنىكىسى</span>
+                </div>
+                <div class="article-content">
+                    <div class="article-date">📅 2026-يىلى 19-ئۆكتەبىر</div>
+                    <h3 class="article-title">يېنىك قوراللاردا تېپىش كۈچىنى (Recoil) كونترول قىلىش ۋە بىئومېخانىكىلىق تۇتۇش ئۇسۇلى</h3>
+                    <p class="article-excerpt">قورالنى توغرا تۇتۇش، C-Clamp تۇتۇش تېخنىكىسىنىڭ ئەۋزەللىكى ۋە ئارقا-ئارقىدىن تېز ئوق چىقارغاندا نىشاننى يوقىتىپ قويماسلىقنىڭ ئىلمىي قائىدىلىرى...</p>
+                    <a href="#" class="read-more">تولۇق ئوقۇش ←</a>
+                </div>
+            </div>
+
+            <!-- ماقالە 2 -->
+            <div class="article-card">
+                <div class="article-img" style="background-image: url('https://images.unsplash.com/photo-1542281286-9e0a16bb7366?auto=format&fit=crop&w=600&q=80');">
+                    <span class="category-tag">كىچىك قىسىم تاكتىكىسى</span>
+                </div>
+                <div class="article-content">
+                    <div class="article-date">📅 2026-يىلى 15-ئۆكتەبىر</div>
+                    <h3 class="article-title">پىيادە ئەسكەرلەر گۇرۇپپىسىنىڭ سىڭىپ كىرىش (Infiltration) ھەرىكىتى ۋە يىغىلىش نۇقتىسى (ORP)</h3>
+                    <p class="article-excerpt">مۇداپىئە سېپىنىڭ ئاجىز نۇقتىلىرىدىن پايدىلىنىپ مەخپىي ئىلگىرىلەش، گۇرۇپپىلارغا بۆلۈنۈش ۋە نىشانغا يېقىنلاشقاندا قايتا ئۇچرىشىش تەرتىپلىرى...</p>
+                    <a href="#" class="read-more">تولۇق ئوقۇش ←</a>
+                </div>
+            </div>
+
+            <!-- ماقالە 3 -->
+            <div class="article-card">
+                <div class="article-img" style="background-image: url('https://images.unsplash.com/photo-1508614589041-895b88991e3e?auto=format&fit=crop&w=600&q=80');">
+                    <span class="category-tag">زامانىۋى مۇداپىئە</span>
+                </div>
+                <div class="article-content">
+                    <div class="article-date">📅 2026-يىلى 10-ئۆكتەبىر</div>
+                    <h3 class="article-title">كىچىك تىپتىكى FPV ئۇچقۇچىسىز ئاپپاراتلارغا (درونلارغا) قارشى شەخسىي ۋە گۇرۇپپا مۇداپىئەسى</h3>
+                    <p class="article-excerpt">زامانىۋى جەڭ مەيدانىدىكى ئاساسلىق تەھدىتكە ئايلانغان كۆزىتىش ۋە ھۇجۇمچى درونلاردىن يوشۇرۇنۇش، ئالدىن بايقاش ۋە تاقابىل تۇرۇش ئۇسۇللىرى...</p>
+                    <a href="#" class="read-more">تولۇق ئوقۇش ←</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2-بۆلەك: ئىنفوگرافىك رەسىملەر -->
+        <div class="section-header" id="infographics">
+            <h2>تاكتىكىلىق ئىنفوگرافىك ۋە سىخېمىلار</h2>
+            <a href="#" class="view-all">بارلىق رەسىملەرنى كۆرۈش ←</a>
+        </div>
+
+        <div class="infographic-grid">
+            <div class="info-card">
+                <div class="info-placeholder">
+                    <span style="font-size: 2rem;">🎯</span>
+                    <strong>نىشاننى ئېنىقلاشنىڭ 3D پىرىنسىپى</strong>
+                    <small style="color: var(--text-muted); margin-top: 8px;">(يۆنىلىش، مۇساپە، سۈپەتلەش سىخېمىسى)</small>
+                </div>
+                <h4>3D نىشان كۆرسىتىش قائىدىسى</h4>
+            </div>
+
+            <div class="info-card">
+                <div class="info-placeholder">
+                    <span style="font-size: 2rem;">🧭</span>
+                    <strong>قىسىم يېتەكلەش تەرتىپى (TLP)</strong>
+                    <small style="color: var(--text-muted); margin-top: 8px;">(8 باسقۇچلۇق قوماندانلىق جەريانى)</small>
+                </div>
+                <h4>TLP نىڭ 8 باسقۇچلۇق دىئاگراممىسى</h4>
+            </div>
+
+            <div class="info-card">
+                <div class="info-placeholder">
+                    <span style="font-size: 2rem;">🔄</span>
+                    <strong>ئاساسىي قورالدىن قوشۇمچە قورالغا ئالمىشىش</strong>
+                    <small style="color: var(--text-muted); margin-top: 8px;">(بىخەتەر ۋە تېز ئالمىشىش بۇلۇڭلىرى)</small>
+                </div>
+                <h4>قورال ئالماشتۇرۇش ھەرىكەت تەرتىپى</h4>
+            </div>
+        </div>
+
+        <!-- 3-بۆلەك: PDF كىتابچىلار ۋە قوللانمىلار -->
+        <div class="section-header" id="library">
+            <h2>PDF ھەربىي قوللانمىلار ۋە دەرسلىكلەر</h2>
+            <a href="#" class="view-all">كۇتۇپخانىغا كىرىش ←</a>
+        </div>
+
+        <div class="pdf-list">
+            <div class="pdf-item">
+                <div class="pdf-info">
+                    <div class="pdf-icon">PDF</div>
+                    <div class="pdf-details">
+                        <h3>پىيادە ئەسكەرلەر مەيدان قوللانمىسى: قۇملۇق ۋە قۇرغاق رايون ھەرىكەتلىرى</h3>
+                        <span>ھۆججەت سىغىمى: 4.2 MB | بەت سانى: 48 بەت | فورماتى: يۇقىرى ئېنىقلىقتىكى PDF</span>
+                    </div>
+                </div>
+                <a href="#" class="download-btn">⬇ چۈشۈرۈش (Download)</a>
+            </div>
+
+            <div class="pdf-item">
+                <div class="pdf-info">
+                    <div class="pdf-icon">PDF</div>
+                    <div class="pdf-details">
+                        <h3>قۇرۇق مەشىق (Dry Fire) ۋە ئاساسىي قارىغا ئېتىش مەشىق پروگراممىسى</h3>
+                        <span>ھۆججەت سىغىمى: 2.8 MB | بەت سانى: 24 بەت | فورماتى: رەسىملىك قوللانما</span>
+                    </div>
+                </div>
+                <a href="#" class="download-btn">⬇ چۈشۈرۈش (Download)</a>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ئاستى قىسمى -->
+    <footer>
+        <p>© 2026 سەرتۇغ ھەربىي بىلىملەر مۇنبىرى | بارلىق ھوقۇق قوغدالغان.</p>
+        <p style="margin-top: 5px; font-size: 0.8rem;">مەقسەت: ئىلمىي، سىستېمىلىق ۋە ئۆلچەملىك ھەربىي مەشىق بىلىملىرىنى ئومۇملاشتۇرۇش.</p>
+    </footer>
+
+</body>
+</html>
