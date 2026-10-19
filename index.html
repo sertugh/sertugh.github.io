@@ -118,40 +118,6 @@
             margin: 0 auto 25px auto;
         }
 
-        .search-box {
-            max-width: 500px;
-            margin: 0 auto;
-            display: flex;
-            gap: 10px;
-        }
-
-        .search-box input {
-            flex: 1;
-            padding: 12px 15px;
-            border-radius: 6px;
-            border: 1px solid var(--border-color);
-            background-color: var(--bg-card);
-            color: var(--text-main);
-            font-family: inherit;
-            font-size: 1rem;
-        }
-
-        .search-box button {
-            padding: 12px 25px;
-            background-color: var(--accent-gold);
-            color: #121614;
-            border: none;
-            border-radius: 6px;
-            font-family: inherit;
-            font-weight: bold;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        .search-box button:hover {
-            background-color: #d8b46c;
-        }
-
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -170,12 +136,6 @@
         .section-header h2 {
             font-size: 1.6rem;
             color: var(--text-main);
-        }
-
-        .view-all {
-            color: var(--accent-gold);
-            text-decoration: none;
-            font-size: 0.95rem;
         }
 
         .articles-grid {
@@ -242,39 +202,70 @@
 
         .read-more {
             display: inline-block;
-            color: var(--accent-gold);
+            background-color: var(--accent-green);
+            color: #fff;
             text-decoration: none;
-            font-weight: bold;
-            font-size: 0.95rem;
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: 0.3s;
+            border: none;
         }
 
-        .infographic-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-bottom: 60px;
+        .read-more:hover {
+            background-color: var(--accent-gold);
+            color: #121614;
         }
 
-        .info-card {
-            background-color: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 15px;
-            text-align: center;
-        }
-
-        .info-placeholder {
-            height: 280px;
-            background: linear-gradient(135deg, #232b27, #181d1a);
-            border: 1px dashed var(--accent-green);
-            border-radius: 6px;
-            display: flex;
-            flex-direction: column;
+        /* تولۇق ئوقۇش كۆزنىكى (Modal Popup) */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
             justify-content: center;
             align-items: center;
-            margin-bottom: 12px;
-            color: var(--accent-gold);
             padding: 20px;
+        }
+
+        .modal-content {
+            background-color: var(--bg-card);
+            border: 1px solid var(--accent-gold);
+            padding: 30px;
+            border-radius: 8px;
+            max-width: 700px;
+            width: 100%;
+            max-height: 85vh;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            left: 20px;
+            font-size: 1.8rem;
+            color: var(--accent-gold);
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+
+        .modal-content h2 {
+            color: var(--accent-gold);
+            margin-bottom: 15px;
+            font-size: 1.6rem;
+        }
+
+        .modal-content p {
+            line-height: 2;
+            color: var(--text-main);
+            margin-bottom: 15px;
         }
 
         .pdf-list {
@@ -329,13 +320,11 @@
             border-radius: 6px;
             font-size: 0.95rem;
             transition: 0.3s;
-            border: 1px solid transparent;
         }
 
         .download-btn:hover {
-            background-color: transparent;
-            border-color: var(--accent-gold);
-            color: var(--accent-gold);
+            background-color: var(--accent-gold);
+            color: #121614;
         }
 
         footer {
@@ -345,24 +334,6 @@
             padding: 30px 20px;
             color: var(--text-muted);
             font-size: 0.9rem;
-        }
-
-        @media (max-width: 768px) {
-            header {
-                flex-direction: column;
-                gap: 15px;
-            }
-            .hero h1 {
-                font-size: 1.8rem;
-            }
-            .pdf-item {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            .download-btn {
-                width: 100%;
-                text-align: center;
-            }
         }
     </style>
 </head>
@@ -380,107 +351,54 @@
             <ul>
                 <li><a href="#" class="active">باش بەت</a></li>
                 <li><a href="#articles">ماقالىلەر</a></li>
-                <li><a href="#infographics">ئىنفوگرافىك</a></li>
                 <li><a href="#library">PDF كۇتۇپخانىسى</a></li>
-                <li><a href="#">بىز ھەققىدە</a></li>
             </ul>
         </nav>
     </header>
 
     <section class="hero">
         <h1>ئىلمىي ئاساستىكى ھەربىي ۋە تاكتىكىلىق بىلىملەر مەركىزى</h1>
-        <p>بۇ مۇنبەردە يېنىك قوراللارنى ئىشلىتىش تېخنىكىسى، كىچىك قىسىم پىيادە ئەسكەرلەر تاكتىكىسى، قوماندانلىق تەرتىپلىرى ۋە زامانىۋى ئۇرۇش ئانالىزلىرى ئۇيغۇر تىلىدا سىستېمىلىق يوللىنىدۇ.</p>
-        <div class="search-box">
-            <input type="text" placeholder="ماقالە، تاكتىكا ياكى قوللانما ئىزدەش...">
-            <button>ئىزدەش</button>
-        </div>
+        <p>بۇ مۇنبەردە يېنىك قوراللارنى ئىشلىتىش تېخنىكىسى، پىيادە ئەسكەرلەر تاكتىكىسى ۋە زامانىۋى جەڭ نەزەرىيەلىرى ئورتاقلىشىدۇ.</p>
     </section>
 
     <div class="container">
 
         <div class="section-header" id="articles">
             <h2>ئەڭ يېڭى ھەربىي ماقالىلەر</h2>
-            <a href="#" class="view-all">بارلىق ماقالىلەرنى كۆرۈش ←</a>
         </div>
 
         <div class="articles-grid">
             <!-- ماقالە 1 -->
             <div class="article-card">
+                <!-- رەسىم قىسمى: internet سۈرەت ئادرېسىنى url كۆزنەكچىسىگە قويىسىز -->
                 <div class="article-img" style="background-image: url('https://images.unsplash.com/photo-1595590424283-b8f17842773f?auto=format&fit=crop&w=600&q=80');">
-                    <span class="category-tag">تاكتىكىلىق ماقالىلەر</span>
+                    <span class="category-tag">قورال تېخنىكىسى</span>
                 </div>
                 <div class="article-content">
-                    <div class="article-date">📅 2026-يىلى 20-ئۆكتەبىر</div>
-                    <h3 class="article-title"> ھەقىقىي جەڭ مەشىقى: ئەمەلىيەتتە دۇچ كېلىدىغان جەڭگە تەييارلىق قىلىش</h3>
-                    <p class="article-excerpt">جابدۇقلارغا مەپتۇن بولۇپ كېتىش تولىمۇ ئاسان. ئوق ئۆتمەس كويزا (plate carrier)، ئوپتىكىلىق نىشانلىغۇچ، تاكتىكىلىق يانتاقتا كەمەرلەر — ھەممىسى ئادەمگە قالتىس كۆرۈنىدۇ، ئەمما رېئال جەڭ ۋە توقۇنۇشلاردا بۇلارنىڭ ھېچقايسىسى نەتىجىنى بەلگىلىيەلمەيدۇ. ئەڭ ھەل قىلغۇچ ئامىل — سىزنىڭ قانداق ھەرىكەت قىلىشىڭىز، قانداق تەپەككۇر قىلىشىڭىز ۋە ۋەزىيەتكە قانداق ماسلىشىشىڭىزدۇر.</p>
-                    <a href="#" class="read-more">تولۇق ئوقۇشنى خالامسىز ←</a>
+                    <div class="article-date">📅 2026-يىلى 19-ئۆكتەبىر</div>
+                    <h3 class="article-title">يېنىك قوراللاردا تېپىش كۈچىنى (Recoil) كونترول قىلىش ۋە بىئومېخانىكىلىق تۇتۇش ئۇسۇلى</h3>
+                    <p class="article-excerpt">قورالنى توغرا تۇتۇش، C-Clamp تۇتۇش تېخنىكىسىنىڭ ئەۋزەللىكى ۋە ئارقا-ئارقىدىن تېز ئوق چىقارغاندا نىشاننى يوقىتىپ قويماسلىقنىڭ ئىلمىي قائىدىلىرى...</p>
+                    <button class="read-more" onclick="openModal('recTitle', 'recBody')">تولۇق ئوقۇش</button>
                 </div>
             </div>
 
-            <!-- ماقالە 2 -->
+            <!-- يېڭى ماقالە قوشىدىغان قېلىپ (بۇنى كۆچۈرۈپ خالىغىنىڭىچە يېڭى ماقالە قوشالايسىز) -->
             <div class="article-card">
-                <div class="article-img" style="background-image: url('https://images.unsplash.com/photo-1542281286-9e0a16bb7366?auto=format&fit=crop&w=600&q=80');">
-                    <span class="category-tag">كىچىك قىسىم تاكتىكىسى</span>
-                </div>
-                <div class="article-content">
-                    <div class="article-date">📅 2026-يىلى 15-ئۆكتەبىر</div>
-                    <h3 class="article-title">پىيادە ئەسكەرلەر گۇرۇپپىسىنىڭ سىڭىپ كىرىش (Infiltration) ھەرىكىتى ۋە يىغىلىش نۇقتىسى (ORP)</h3>
-                    <p class="article-excerpt">مۇداپىئە سېپىنىڭ ئاجىز نۇقتىلىرىدىن پايدىلىنىپ مەخپىي ئىلگىرىلەش، گۇرۇپپىلارغا بۆلۈنۈش ۋە نىشانغا يېقىنلاشقاندا قايتا ئۇچرىشىش تەرتىپلىرى...</p>
-                    <a href="#" class="read-more">تولۇق ئوقۇش ←</a>
-                </div>
-            </div>
-
-            <!-- يېڭى ماقالە قوشىدىغان ئورۇن (Template): بۇ بۆلەكنى كۆچۈرۈپ يېڭى ماقالە قوشقىلى بولىدۇ -->
-            <div class="article-card">
+                <!-- رەسىم ئادرېسىنى تۆۋەندىكى url نىڭ ئىچىگە قويىسىز -->
                 <div class="article-img" style="background-image: url('https://images.unsplash.com/photo-1508614589041-895b88991e3e?auto=format&fit=crop&w=600&q=80');">
-                    <span class="category-tag">تۈرى (مەسىلەن: مۇداپىئە)</span>
+                    <span class="category-tag">تاكتىكا</span>
                 </div>
                 <div class="article-content">
                     <div class="article-date">📅 2026-يىلى [چېسلا]</div>
-                    <h3 class="article-title">يېڭى ماقالىڭىزنىڭ تېمىسىنى بۇ يەرگە يازىسىز</h3>
-                    <p class="article-excerpt">ماقالىڭىزنىڭ قىسقىچە مەزمۇنى ياكى كىرىش سۆزى بۇ يەرگە يېزىلىدۇ...</p>
-                    <a href="#" class="read-more">تولۇق ئوقۇش ←</a>
+                    <h3 class="article-title">يېڭى ماقالىڭىزنىڭ تېمىسى</h3>
+                    <p class="article-excerpt">ماقالىڭىزنىڭ قىسقىچە كىرىش سۆزى...</p>
+                    <button class="read-more" onclick="alert('بۇ يېڭى ماقالىنىڭ تەپسىلىي تېكىستى بۇ يەرگە يېزىلىدۇ.')">تولۇق ئوقۇش</button>
                 </div>
-            </div>
-        </div>
-
-        <div class="section-header" id="infographics">
-            <h2>تاكتىكىلىق ئىنفوگرافىك ۋە سىخېمىلار</h2>
-            <a href="#" class="view-all">بارلىق رەسىملەرنى كۆرۈش ←</a>
-        </div>
-
-        <div class="infographic-grid">
-            <div class="info-card">
-                <div class="info-placeholder">
-                    <span style="font-size: 2rem;">🎯</span>
-                    <strong>نىشاننى ئېنىقلاشنىڭ 3D پىرىنسىپى</strong>
-                    <small style="color: var(--text-muted); margin-top: 8px;">(يۆنىلىش، مۇساپە، سۈپەتلەش سىخېمىسى)</small>
-                </div>
-                <h4>3D نىشان كۆرسىتىش قائىدىسى</h4>
-            </div>
-
-            <div class="info-card">
-                <div class="info-placeholder">
-                    <span style="font-size: 2rem;">🧭</span>
-                    <strong>قىسىم يېتەكلەش تەرتىپى (TLP)</strong>
-                    <small style="color: var(--text-muted); margin-top: 8px;">(8 باسقۇچلۇق قوماندانلىق جەريانى)</small>
-                </div>
-                <h4>TLP نىڭ 8 باسقۇچلۇق دىئاگراممىسى</h4>
-            </div>
-
-            <div class="info-card">
-                <div class="info-placeholder">
-                    <span style="font-size: 2rem;">🔄</span>
-                    <strong>ئاساسىي قورالدىن قوشۇمچە قورالغا ئالمىشىش</strong>
-                    <small style="color: var(--text-muted); margin-top: 8px;">(بىخەتەر ۋە تېز ئالمىشىش بۇلۇڭلىرى)</small>
-                </div>
-                <h4>قورال ئالماشتۇرۇش ھەرىكەت تەرتىپى</h4>
             </div>
         </div>
 
         <div class="section-header" id="library">
-            <h2>PDF ھەربىي قوللانمىلار ۋە دەرسلىكلەر</h2>
-            <a href="#" class="view-all">كۇتۇپخانىغا كىرىش ←</a>
+            <h2>PDF ھەربىي قوللانمىلار</h2>
         </div>
 
         <div class="pdf-list">
@@ -489,19 +407,37 @@
                     <div class="pdf-icon">PDF</div>
                     <div class="pdf-details">
                         <h3>پىيادە ئەسكەرلەر مەيدان قوللانمىسى: قۇملۇق ۋە قۇرغاق رايون ھەرىكەتلىرى</h3>
-                        <span>ھۆججەت سىغىمى: 4.2 MB | بەت سانى: 48 بەت | فورماتى: يۇقىرى ئېنىقلىقتىكى PDF</span>
+                        <span>ھۆججەت سىغىمى: 4.2 MB | بەت سانى: 48 بەت</span>
                     </div>
                 </div>
-                <a href="#" class="download-btn">⬇ چۈشۈرۈش (Download)</a>
+                <a href="#" class="download-btn">⬇ چۈشۈرۈش</a>
             </div>
         </div>
 
     </div>
 
+    <!-- ماقالە ئوقۇش كۆزنىكى -->
+    <div id="articleModal" class="modal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeModal()">&times;</button>
+            <h2 id="modalTitle">ماقالە تېمىسى</h2>
+            <p id="modalText">ماقالىنىڭ تولۇق تېكىستى بۇ يەردە كۆرسىتىلىدۇ...</p>
+        </div>
+    </div>
+
     <footer>
         <p>© 2026 سەرتۇغ ھەربىي بىلىملەر مۇنبىرى | بارلىق ھوقۇق قوغدالغان.</p>
-        <p style="margin-top: 5px; font-size: 0.8rem;">مەقسەت: ئىلمىي، سىستېمىلىق ۋە ئۆلچەملىك ھەربىي مەشىق بىلىملىرىنى ئومۇملاشتۇرۇش.</p>
     </footer>
 
+    <script>
+        function openModal(title, bodyKey) {
+            document.getElementById('articleModal').style.display = 'flex';
+            document.getElementById('modalTitle').innerText = "يېنىك قوراللاردا تېپىش كۈچىنى (Recoil) كونترول قىلىش";
+            document.getElementById('modalText').innerText = "قورالنى توغرا تۇتۇش، C-Clamp تۇتۇش تېخنىكىسىنىڭ ئەۋزەللىكى ۋە ئارقا-ئارقىدىن تېز ئوق چىقارغاندا نىشاننى يوقىتىپ قويماسلىق ناھايىتى مۇھىم. بىئومېخانىكىلىق جەھەتتىن ئېيتقاندا، بىلىەكنىڭ بۇلۇڭى ۋە گەۋدىنىڭ ئالدىغا ئېگىلىش نىسبىتى تېپىش كۈچىنى ئەڭ تۆۋەن چەككە چۈشۈرۈشتە ھەل قىلغۇچ رول ئوينايدۇ.";
+        }
+        function closeModal() {
+            document.getElementById('articleModal').style.display = 'none';
+        }
+    </script>
 </body>
 </html>
