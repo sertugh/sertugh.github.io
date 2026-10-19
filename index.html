@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>سەرتۇغ ھەربىي بىلىملەر مۇنبىرى</title>
     <style>
-        /* ئۇيغۇرچە خەت نۇسخىسى ۋە ئاساسىي تەڭشەكلەر */
         @font-face {
             font-family: 'UKIJ Tuz Tom';
             src: local('UKIJ Tuz Tom'), local('ALKATIP Tor'), local('Microsoft Uighur');
@@ -36,7 +35,6 @@
             direction: rtl;
         }
 
-        /* ئۈستى تىزىملىك (Navbar) */
         header {
             background-color: rgba(28, 34, 31, 0.95);
             border-bottom: 2px solid var(--accent-green);
@@ -99,7 +97,6 @@
             color: #fff;
         }
 
-        /* باش بەت چوڭ ئېلان رايونى (Hero Section) */
         .hero {
             background: linear-gradient(rgba(18, 22, 20, 0.85), rgba(18, 22, 20, 0.95)), 
                         url('https://images.unsplash.com/photo-1508614589041-895b88991e3e?auto=format&fit=crop&w=1400&q=80') center/cover;
@@ -155,7 +152,6 @@
             background-color: #d8b46c;
         }
 
-        /* ئاساسىي مەزمۇن رايونى */
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -182,7 +178,6 @@
             font-size: 0.95rem;
         }
 
-        /* 1. ماقالىلەر تىزىملىكى (Articles Grid) */
         .articles-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -253,7 +248,6 @@
             font-size: 0.95rem;
         }
 
-        /* 2. ئىنفوگرافىك رەسىملەر رايونى (Infographics) */
         .infographic-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -283,7 +277,6 @@
             padding: 20px;
         }
 
-        /* 3. PDF كىتابچىلار ۋە قوللانمىلار رايونى */
         .pdf-list {
             display: flex;
             flex-direction: column;
@@ -345,7 +338,6 @@
             color: var(--accent-gold);
         }
 
-        /* ئاستى قىسمى (Footer) */
         footer {
             background-color: #0d100e;
             border-top: 1px solid var(--border-color);
@@ -376,7 +368,6 @@
 </head>
 <body>
 
-    <!-- باش تىزىملىك -->
     <header>
         <div class="logo-area">
             <div class="logo-badge">سەرتۇغ</div>
@@ -396,7 +387,6 @@
         </nav>
     </header>
 
-    <!-- چوڭ تونۇشتۇرۇش رايونى -->
     <section class="hero">
         <h1>ئىلمىي ئاساستىكى ھەربىي ۋە تاكتىكىلىق بىلىملەر مەركىزى</h1>
         <p>بۇ مۇنبەردە يېنىك قوراللارنى ئىشلىتىش تېخنىكىسى، كىچىك قىسىم پىيادە ئەسكەرلەر تاكتىكىسى، قوماندانلىق تەرتىپلىرى ۋە زامانىۋى ئۇرۇش ئانالىزلىرى ئۇيغۇر تىلىدا سىستېمىلىق يوللىنىدۇ.</p>
@@ -408,7 +398,6 @@
 
     <div class="container">
 
-        <!-- 1-بۆلەك: يېزىقچە ماقالىلەر -->
         <div class="section-header" id="articles">
             <h2>ئەڭ يېڭى ھەربىي ماقالىلەر</h2>
             <a href="#" class="view-all">بارلىق ماقالىلەرنى كۆرۈش ←</a>
@@ -423,7 +412,7 @@
                 <div class="article-content">
                     <div class="article-date">📅 2026-يىلى 19-ئۆكتەبىر</div>
                     <h3 class="article-title">يېنىك قوراللاردا تېپىش كۈچىنى (Recoil) كونترول قىلىش ۋە بىئومېخانىكىلىق تۇتۇش ئۇسۇلى</h3>
-                    <p class="article-excerpt">قورالنى توغرا تۇتۇش، C-Clamp تۇتۇش تېخنىكىسىنىڭ ئەۋزەللىكى ۋە ئارقا-ئارقىدىن تېز ئوق چىقارغاندا نىشاننى يوقىتىپ قويماسلىقنىڭ ئىلمىي قائىدىلىرى...</p>
+                    <p class="article-excerpt">قورالنى توغرا تۇتۇش، C-Clamp تۇتۇش تېخنىكىسىنىڭ ئەۋزەللىكى ۋە ئارقا-ئارقىدىن تېز ئوق چىقارغاندا نىشاننى يوقىتىپ قويماسلىقның ئىلمىي قائىدىلىرى...</p>
                     <a href="#" class="read-more">تولۇق ئوقۇش ←</a>
                 </div>
             </div>
@@ -441,21 +430,20 @@
                 </div>
             </div>
 
-            <!-- ماقالە 3 -->
+            <!-- يېڭى ماقالە قوشىدىغان ئورۇن (Template): بۇ بۆلەكنى كۆچۈرۈپ يېڭى ماقالە قوشقىلى بولىدۇ -->
             <div class="article-card">
                 <div class="article-img" style="background-image: url('https://images.unsplash.com/photo-1508614589041-895b88991e3e?auto=format&fit=crop&w=600&q=80');">
-                    <span class="category-tag">زامانىۋى مۇداپىئە</span>
+                    <span class="category-tag">تۈرى (مەسىلەن: مۇداپىئە)</span>
                 </div>
                 <div class="article-content">
-                    <div class="article-date">📅 2026-يىلى 10-ئۆكتەبىر</div>
-                    <h3 class="article-title">كىچىك تىپتىكى FPV ئۇچقۇچىسىز ئاپپاراتلارغا (درونلارغا) قارشى شەخسىي ۋە گۇرۇپپا مۇداپىئەسى</h3>
-                    <p class="article-excerpt">زامانىۋى جەڭ مەيدانىدىكى ئاساسلىق تەھدىتكە ئايلانغان كۆزىتىش ۋە ھۇجۇمچى درونلاردىن يوشۇرۇنۇش، ئالدىن بايقاش ۋە تاقابىل تۇرۇش ئۇسۇللىرى...</p>
+                    <div class="article-date">📅 2026-يىلى [چېسلا]</div>
+                    <h3 class="article-title">يېڭى ماقالىڭىزنىڭ تېمىسىنى بۇ يەرگە يازىسىز</h3>
+                    <p class="article-excerpt">ماقالىڭىزنىڭ قىسقىچە مەزمۇنى ياكى كىرىش سۆزى بۇ يەرگە يېزىلىدۇ...</p>
                     <a href="#" class="read-more">تولۇق ئوقۇش ←</a>
                 </div>
             </div>
         </div>
 
-        <!-- 2-بۆلەك: ئىنفوگرافىك رەسىملەر -->
         <div class="section-header" id="infographics">
             <h2>تاكتىكىلىق ئىنفوگرافىك ۋە سىخېمىلار</h2>
             <a href="#" class="view-all">بارلىق رەسىملەرنى كۆرۈش ←</a>
@@ -490,7 +478,6 @@
             </div>
         </div>
 
-        <!-- 3-بۆلەك: PDF كىتابچىلار ۋە قوللانمىلار -->
         <div class="section-header" id="library">
             <h2>PDF ھەربىي قوللانمىلار ۋە دەرسلىكلەر</h2>
             <a href="#" class="view-all">كۇتۇپخانىغا كىرىش ←</a>
@@ -507,22 +494,10 @@
                 </div>
                 <a href="#" class="download-btn">⬇ چۈشۈرۈش (Download)</a>
             </div>
-
-            <div class="pdf-item">
-                <div class="pdf-info">
-                    <div class="pdf-icon">PDF</div>
-                    <div class="pdf-details">
-                        <h3>قۇرۇق مەشىق (Dry Fire) ۋە ئاساسىي قارىغا ئېتىش مەشىق پروگراممىسى</h3>
-                        <span>ھۆججەت سىغىمى: 2.8 MB | بەت سانى: 24 بەت | فورماتى: رەسىملىك قوللانما</span>
-                    </div>
-                </div>
-                <a href="#" class="download-btn">⬇ چۈشۈرۈش (Download)</a>
-            </div>
         </div>
 
     </div>
 
-    <!-- ئاستى قىسمى -->
     <footer>
         <p>© 2026 سەرتۇغ ھەربىي بىلىملەر مۇنبىرى | بارلىق ھوقۇق قوغدالغان.</p>
         <p style="margin-top: 5px; font-size: 0.8rem;">مەقسەت: ئىلمىي، سىستېمىلىق ۋە ئۆلچەملىك ھەربىي مەشىق بىلىملىرىنى ئومۇملاشتۇرۇش.</p>
